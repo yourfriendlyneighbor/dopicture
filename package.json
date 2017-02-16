@@ -1,0 +1,17 @@
+{
+  "name": "responsive",
+  "version": "0.0.1",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "console.log('testing..')",
+    "start": "node server.js"
+  },
+  "author": "Yourfriendlyneighbor <carlperelman1960@gmail.com> (http://mythicalnature.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "1.16.1",
+    "express": "4.14.1",
+    "mongoose": "4.8.3"
+  }
+}

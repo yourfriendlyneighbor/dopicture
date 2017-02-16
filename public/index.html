@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html ng-app="Dovideo" ng-controller="MainCtrl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Dopicture</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="index.html">Dashboard <span class="sr-only">(current)</span></a></li>
+            <li><a href="/pictures.html">Pictures</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Welcome, {{username}}</a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    <header id="header">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10">
+            <h1><span class="glyphicon glyphicon-cog"></span> Dashboard <small>View recommended videos</small></h1>
+          </div>
+          <div class="col-md-2">
+            <div class="dropdown create">
+              <button type="button" class="btn btn-default dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
+                Manage Content
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" >
+                <li><a type="button" data-toggle="modal" data-target="#addVideo">Create Picture</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section id="breadcrumb">
+      <div class="container">
+        <ol class="breadcrumb">
+          <li class="active">Dashboard</li>
+        </ol>
+      </div>
+    </section>
+    <section id="main">
+      <div class="container">
+        <div class="col-md-3">
+          <div class="list-group">
+            <a href="index.html" class="list-group-item active main-col-bg">Dashboard</a>
+            <a href="#" class="list-group-item">Trending</a>
+            <a href="#" class="list-group-item">History</span></a>
+            <a href="#" class="list-group-item">Subscribers <span class="badge">{{subs}}</span></a>
+          </div>
+
+          <div class="well">
+            <h4>Total Pictures: </h4>
+            <h5>{{totalvideos}}</h5>
+            <h4>Total Subs:</h4>
+            <h5>{{subs}}</h5>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <div class="panel panel-default">
+            <div class="panel-heading main-col-bg">
+              <h3 class="panel-title">Latest Pictures</h3>
+            </div>
+            <div class="panel-body">
+              <div class="col-md-4" ng-repeat="video in Latestvideos | orderBy: 'date'">
+                <img ng-src="{{video.src}}" class="img-reponsive img">
+                <p>{{video.title}} -- {{video.author}}</p>
+                <button type="button" ng-click="custom=!custom" class="btn main-col-bg">
+                  Click to view more
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+                </button>
+                <br>
+                <br>
+                <span ng-show="custom">
+                  Description: {{video.description}}
+                </span>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <div class="modal fade" id="addVideo" tabindex="-1" role="dialog" aria-labelledby="myModallabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <form>
+          <div class="modal-header main-col-bg">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+            <h4 class="modal-title" id="myModalLabel">Add Picture</h4>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label>Picture Title</label>
+              <input ng-model="Vidtitle" type="text" class="form-control" placeholder="Picture Title">
+            </div>
+            <div class="form-group">
+              <label>Picture Description</label>
+              <input ng-model="Viddescription" type="text" class="form-control" placeholder="Picture Description">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn main-col-bg" ng-click="submit()" data-dismiss="modal">Submit</button>
+          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous">
+    </script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js" charset="utf-8"></script>
+    <script src="main.js" charset="utf-8"></script>
+  </body>
+</html>
