@@ -3,11 +3,6 @@ const router = express.Router();
 const video = require('../models/video');
 
 
-router.get('/', (req, res, next) => {
-  res.sendFile(__dirname + '/public/index.html');
-  next()
-});
-
 router.get('/logout', (req, res, next) => {
   res.send('Logged out');
   next()
