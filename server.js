@@ -1,6 +1,8 @@
 /* Node modules */
   const express = require('express');
   const bodyParser = require('body-parser');
+  const compress = require('compression');
+
 
 /* Config */
   const config = require('./config/config');
@@ -20,16 +22,17 @@
   /* BodyParser */
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended : true }));
+  /* GZIP Compression */
+    app.use(compress());
+  /* Routes init */
+    app.use('/', routes)
+    app.use('/getVideos', routes);
+    app.use('/getuserdata', routes);
+    app.use('/video', routes);
+    app.use('/login', routes);
+    app.use('/signup', routes);
 
-/* Routes init */
-  app.use('/', routes)
-  app.use('/getVideos', routes);
-  app.use('/getuserdata', routes);
-  app.use('/video', routes);
-  app.use('/login', routes);
-  app.use('/signup', routes);
-
-/* Server set up */
-  app.listen(port, () => {
-    console.log('Server running on port ' + port);
-  })
+  /* Server set up */
+    app.listen(port, () => {
+      console.log('Server running on port ' + port);
+    })
