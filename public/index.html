@@ -30,7 +30,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">Welcome, {{username}}</a></li>
-            <li><a href="/logout">Logout</a></li>
+            <li><a href="/logout.html">Logout</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -85,7 +85,7 @@
               <h3 class="panel-title">Latest Pictures</h3>
             </div>
             <div class="panel-body">
-              <div class="col-md-4" ng-repeat="video in Latestvideos | orderBy: 'date'">
+              <div class="col-md-4" ng-repeat="video in Latestvideos  | orderBy: 'date'">
                 <img ng-src="{{video.src}}" class="img-reponsive img">
                 <p>{{video.title}} -- {{video.author}}</p>
                 <button type="button" ng-click="custom=!custom" class="btn main-col-bg">
@@ -111,7 +111,7 @@
     <div class="modal fade" id="addVideo" tabindex="-1" role="dialog" aria-labelledby="myModallabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <form>
+          <form enctype="multipart/form-data">
           <div class="modal-header main-col-bg">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
             <h4 class="modal-title" id="myModalLabel">Add Picture</h4>
@@ -124,6 +124,10 @@
             <div class="form-group">
               <label>Picture Description</label>
               <input ng-model="Viddescription" type="text" class="form-control" placeholder="Picture Description">
+            </div>
+            <div class="form-group">
+              <label>Image</label>
+                <input id="upload-input" type="file" name="uploads[]" multiple="multiple"></br>
             </div>
           </div>
           <div class="modal-footer">
@@ -146,15 +150,7 @@
 
 
 
-
-    <script
-      src="https://code.jquery.com/jquery-3.1.1.min.js"
-      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-      crossorigin="anonymous">
-    </script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js" charset="utf-8"></script>
+    <script src="scripts.min.js" charset="utf-8"></script>
     <script src="main.js" charset="utf-8"></script>
   </body>
 </html>

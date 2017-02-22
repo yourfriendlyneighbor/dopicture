@@ -8,7 +8,11 @@ var videoSchema = new Schema({
   author: String,
   date: String,
   description: String
-});
+},
+{
+  collection: 'videos'
+}
+);
 
 const Video = mongoose.model('Video', videoSchema);
 

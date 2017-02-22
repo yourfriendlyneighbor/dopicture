@@ -5,14 +5,23 @@ angular.module('Dovideo', [])
         $scope.Latestvideos.push(data.data[i])
       }
     })
-
-    $scope.Latestvideos = [];
-    /* Things to Eventually put in mongodb */
-      $scope.username = "Jonah";
+    $http.get('/getuserdata').then(function(data,status){
+      for (var i = 0; i < data.data.length; i++) {
+        $scope.username = data.data[i].name;
+        //$scope.subs = data.data[i].subs;
+        //$scope.totalvideos = data.data[i].totalvideos;
+      }
+    })
+    /* Variables to Set */
+      $scope.Latestvideos = [];
       $scope.title = "User | Dashboard";
+    /* */
+
+    /* Things to Eventually put in mongodb */
       $scope.subs = 13
       $scope.totalvideos = 18;
     /* */
+
     $scope.submit = function(){
       $scope.video =
         [{
@@ -22,7 +31,6 @@ angular.module('Dovideo', [])
           date: new Date,
           description: $scope.Viddescription
         }]
-
       $http.post('/video', $scope.video).then(function(data, status) {
         alert($scope.Vidtitle + ' has been created.')
         for (var i = 0; i < data.config.data.length; i++) {
