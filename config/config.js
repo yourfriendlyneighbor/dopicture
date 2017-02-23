@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 
 function cnnMongodb(){
-  mongoose.connect('mongodb://localhost:27017/videos');
+  mongoose.connect('mongodb://mythicalnaturecom:nysw4052@ds054999.mlab.com:54999/videos');
   const db = mongoose.connection;
   db.on('error', console.error.bind(console, 'connecion error:'));
   db.once('open', () => {
