@@ -23,7 +23,7 @@
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended : true }));
   /* GZIP Compression */
-    app.use(compress({ threshold: 0 }));
+    app.use(compress());
   /* Routes init */
     app.use('/', routes)
     app.use('/getVideos', routes);
