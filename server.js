@@ -25,13 +25,15 @@
   /* GZIP Compression */
     app.use(compress());
   /* Routes init */
-    app.use('/', routes)
     app.use('/getVideos', routes);
     app.use('/getuserdata', routes);
+    app.use('/', routes)
+    app.use('/pictures', routes)
     app.use('/video', routes);
     app.use('/login', routes);
     app.use('/signup', routes);
-
+    app.use('/subs', routes);
+    app.use('/subz', routes)
   /* Server set up */
     app.listen(port, () => {
       console.log('Server running on port ' + port);

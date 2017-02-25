@@ -5,22 +5,41 @@ angular.module('Dovideo', [])
         $scope.Latestvideos.push(data.data[i])
       }
     })
-    $http.get('/getuserdata').then(function(data,status){
+    $http.get('/getuserdata').then(function(data, status){
       for (var i = 0; i < data.data.length; i++) {
-        $scope.username = data.data[i].name;
-        //$scope.subs = data.data[i].subs;
+        $scope.username = data.data[i].name || 'Username not found';
         //$scope.totalvideos = data.data[i].totalvideos;
       }
     })
+    setTimeout(function(){
+      const dataToSend = [{username: $scope.username}]
+      $http.post('/subz', dataToSend).then(function(data, status){
+        console.log(data);
+        $scope.subs = data.data.subs | 'Subscribers not found'
+        clearInterval()
+      })
+    },300);
+
+
     /* Variables to Set */
       $scope.Latestvideos = [];
       $scope.title = "User | Dashboard";
     /* */
 
     /* Things to Eventually put in mongodb */
-      $scope.subs = 13
       $scope.totalvideos = 18;
     /* */
+    $scope.addSub = function(author){
+      console.log(author);
+      $
+      $scope.infoToSend = [{
+        author: author
+      }]
+      $http.post('/subs', $scope.infoToSend).then(function (data, status) {
+        console.log(data.data);
+      })
+    }
+
 
     $scope.submit = function(){
       $scope.video =
@@ -29,7 +48,8 @@ angular.module('Dovideo', [])
           src: 'uploads/img/puppy2.jpg',
           author: $scope.username,
           date: new Date,
-          description: $scope.Viddescription
+          description: $scope.Viddescription,
+          subs: $scope.subs
         }]
       $http.post('/video', $scope.video).then(function(data, status) {
         alert($scope.Vidtitle + ' has been created.')

@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 var signupSchema = new Schema({
   name: String,
   email: String,
-  pass: String
+  pass: String,
+  subscribers: Number
 },
 {
   collection: 'signups'
