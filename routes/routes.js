@@ -54,7 +54,9 @@ router.post('/video', (req, res, next) => {
 router.post('/login', (req, res, next) => {
 
   loggedin = false;
-
+  w = ' ';
+  x = ' ';
+  z = ' ';
 
   for (var i = 0; i < req.body.length; i++) {
     w = req.body[i].name;
